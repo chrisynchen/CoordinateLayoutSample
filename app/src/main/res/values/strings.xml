@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CoordinatorLayoutSample</string>
+    <string name="action_settings">Settings</string>
+</resources>
