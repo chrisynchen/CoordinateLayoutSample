@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.chris.coordinatorlayoutsample.R;
 import com.chris.coordinatorlayoutsample.fragment.ItemFragment;
@@ -92,7 +93,7 @@ public class NormalNavigationViewActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -104,9 +105,13 @@ public class NormalNavigationViewActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_star) {
+            Toast.makeText(this,"click star!",Toast.LENGTH_SHORT).show();
             return true;
-        }else if(id == android.R.id.home){
+        } if (id == R.id.menu_search) {
+            Toast.makeText(this,"click search!",Toast.LENGTH_SHORT).show();
+            return true;
+        } else if(id == android.R.id.home){
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
 

@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00ffffff"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <RelativeLayout
         android:id="@+id/rlTopLeftTitle"
@@ -32,11 +32,20 @@
         android:layout_centerVertical="true">
 
         <ImageView
-            android:id="@+id/ivOther"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/ivStar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_centerVertical="true"
-            android:visibility="gone" />
+            android:background="@drawable/star"/>
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/search"
+            android:layout_toRightOf="@+id/ivStar"/>
     </RelativeLayout>
 
     <TextView
@@ -47,18 +56,6 @@
         android:text=""
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#D4A477" />
-
-    <!--
-         <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp"
-        android:background="@null"
-        android:src="@android:drawable/ic_menu_rotate" />
-    -->
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

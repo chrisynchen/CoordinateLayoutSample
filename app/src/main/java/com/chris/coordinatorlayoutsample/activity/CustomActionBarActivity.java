@@ -12,8 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chris.coordinatorlayoutsample.R;
 import com.chris.coordinatorlayoutsample.fragment.ItemFragment;
@@ -100,7 +102,22 @@ public class CustomActionBarActivity extends AppCompatActivity {
 
         View mCustomView = mInflater.inflate(R.layout.custom_action_bar, null);
         mActionBarTitle = (TextView) mCustomView.findViewById(R.id.title_text);
+        ImageView ivStar = (ImageView) mCustomView.findViewById(R.id.ivStar);
+        ImageView ivSearch = (ImageView) mCustomView.findViewById(R.id.ivSearch);
+
         mActionBarTitle.setText("My Own Title");
+        ivStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CustomActionBarActivity.this,"click star!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CustomActionBarActivity.this,"click search!",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         RelativeLayout rlTopLeftTitle = (RelativeLayout) mCustomView.findViewById(R.id.rlTopLeftTitle);
         rlTopLeftTitle.setOnClickListener(new View.OnClickListener() {

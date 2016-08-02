@@ -1,11 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".NormalNavigationViewActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"
         android:enabled="true"/>
+        -->
+    <item android:id="@+id/menu_star"
+        android:title="text"
+        android:orderInCategory="0"
+        android:icon="@drawable/star"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/menu_search"
+        android:title="text"
+        android:orderInCategory="1"
+        android:icon="@drawable/search"
+        app:showAsAction="always" />
 </menu>
