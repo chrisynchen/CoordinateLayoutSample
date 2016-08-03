@@ -21,6 +21,7 @@
         <activity android:name="com.chris.coordinatorlayoutsample.activity.NormalNavigationViewActivity"></activity>
         <activity android:name="com.chris.coordinatorlayoutsample.activity.CustomActionBarActivity"></activity>
         <activity android:name="com.chris.coordinatorlayoutsample.activity.CustomNavigationViewActivity"></activity>
+        <activity android:name="com.chris.coordinatorlayoutsample.activity.ItemDetailActivity"></activity>
     </application>
 
 </manifest>

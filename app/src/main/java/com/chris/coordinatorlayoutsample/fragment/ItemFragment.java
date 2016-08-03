@@ -1,6 +1,7 @@
 package com.chris.coordinatorlayoutsample.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.chris.coordinatorlayoutsample.R;
 import com.chris.coordinatorlayoutsample.activity.BaseActivity;
 import com.chris.coordinatorlayoutsample.activity.CustomActionBarActivity;
 import com.chris.coordinatorlayoutsample.activity.CustomNavigationViewActivity;
+import com.chris.coordinatorlayoutsample.activity.ItemDetailActivity;
 import com.chris.coordinatorlayoutsample.activity.NormalNavigationViewActivity;
 import com.chris.coordinatorlayoutsample.tool.LowerItem;
 
@@ -124,7 +126,16 @@ public class ItemFragment extends Fragment {
             MyUpperViewHolder myViewHolder = (MyUpperViewHolder) holder;
 
             myViewHolder.tvText.setText(list.get(position));
+            myViewHolder.rlGroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ItemDetailActivity.class);
+                    intent.putExtra(ItemDetailActivity.EXTRA_NAME, list.get(position));
 
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override
