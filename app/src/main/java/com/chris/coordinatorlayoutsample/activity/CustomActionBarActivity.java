@@ -23,7 +23,7 @@ import com.chris.coordinatorlayoutsample.fragment.ItemFragment;
 /**
  * Created by Chris on 16/8/2.
  */
-public class CustomActionBarActivity extends AppCompatActivity {
+public class CustomActionBarActivity extends BaseActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -39,6 +39,8 @@ public class CustomActionBarActivity extends AppCompatActivity {
         setActionBar();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        setupTab();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
@@ -56,6 +58,15 @@ public class CustomActionBarActivity extends AppCompatActivity {
         ItemFragment fragment = ItemFragment.newInstance("Home");
         gotoSubmainFragment(fragment);
         mActionBarTitle.setText("Home");
+    }
+
+    @Override
+    void setupTab() {
+        mTabs = (android.support.design.widget.TabLayout) findViewById(R.id.tab);
+
+        for (int i = 0; i < 10; i++) {
+            mTabs.addTab(mTabs.newTab().setText("TAB" + i));
+        }
     }
 
     private void setupDrawerContent(NavigationView navigationView) {

@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Created by Chris on 16/8/2.
  */
-public class CustomNavigationViewActivity extends AppCompatActivity {
+public class CustomNavigationViewActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
 
     ActionBar mActionBar;
@@ -51,6 +51,7 @@ public class CustomNavigationViewActivity extends AppCompatActivity {
         mActionBar.setDisplayHomeAsUpEnabled(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setupTab();
 
         rvList = (RecyclerView) findViewById(R.id.rvNavigation);
 
@@ -83,6 +84,15 @@ public class CustomNavigationViewActivity extends AppCompatActivity {
         gotoSubmainFragment(fragment);
 
         mActionBar.setTitle(upperList.get(0));
+    }
+
+    @Override
+    void setupTab() {
+        mTabs = (android.support.design.widget.TabLayout) findViewById(R.id.tab);
+
+        for (int i = 0; i < 10; i++) {
+            mTabs.addTab(mTabs.newTab().setText("TAB" + i));
+        }
     }
 
     private void gotoSubmainFragment(android.support.v4.app.Fragment target) {

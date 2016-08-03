@@ -3,8 +3,11 @@ package com.chris.coordinatorlayoutsample.activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,12 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chris.coordinatorlayoutsample.R;
 import com.chris.coordinatorlayoutsample.fragment.ItemFragment;
 
-public class NormalNavigationViewActivity extends AppCompatActivity {
+public class NormalNavigationViewActivity extends BaseActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -35,6 +40,7 @@ public class NormalNavigationViewActivity extends AppCompatActivity {
         mActionBar.setDisplayHomeAsUpEnabled(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        setupTab();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
@@ -52,6 +58,15 @@ public class NormalNavigationViewActivity extends AppCompatActivity {
         ItemFragment fragment = ItemFragment.newInstance("Home");
         gotoSubmainFragment(fragment);
         mActionBar.setTitle("Home");
+    }
+
+    @Override
+    void setupTab() {
+        mTabs = (android.support.design.widget.TabLayout) findViewById(R.id.tab);
+
+        for (int i = 0; i < 10; i++) {
+            mTabs.addTab(mTabs.newTab().setText("TAB" + i));
+        }
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
