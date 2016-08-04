@@ -16,7 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -48,7 +50,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_detail_main_activity);
         Intent intent = getIntent();
-        final String cheeseName = intent.getStringExtra(EXTRA_NAME);
+        final String titleName = intent.getStringExtra(EXTRA_NAME);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +58,7 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(cheeseName);
+        collapsingToolbar.setTitle(titleName);
 
         ViewPager ivPagerPoster = (ViewPager) findViewById(R.id.ivPagerPoster);
 

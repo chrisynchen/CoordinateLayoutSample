@@ -1,7 +1,15 @@
-# CoordinateLayoutSample
-Demo with Android NavigationView
+#CoordinateLayoutSample
+Demo with Android NavigationView & Coordinatorlayout
 
 ## Demo
++ CustomNavigationView   
+ 
+![CustomNavigationView](/demo/CustomNavigationView.gif)
 
-![CustomNavigationView](/demo/CustomNavigationView.gif "CustomNavigationView") 
-![NormalNavigationView](/demo/NormalNavigationView.gif "NormalNavigationView")
++ NormalNavigationView
+
+![NormalNavigationView](/demo/NormalNavigationView.gif)
+
++ ItemDetail   
+
+![ItemDetail](/demo/ItemDetail.gif)

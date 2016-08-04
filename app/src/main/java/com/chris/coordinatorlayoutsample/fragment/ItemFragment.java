@@ -3,6 +3,8 @@ package com.chris.coordinatorlayoutsample.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -10,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chris.coordinatorlayoutsample.R;
 import com.chris.coordinatorlayoutsample.activity.BaseActivity;
@@ -109,33 +113,30 @@ public class ItemFragment extends Fragment {
 
         List<String> list;
 
-        public MyAdapter(List<String> list) {
+        Context context;
+
+        public MyAdapter(Context context, List<String> list) {
+            this.context = context;
             this.list = list;
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_view_item, viewGroup, false);
-            return new MyUpperViewHolder(view);
+            View view = LayoutInflater.from(context).inflate(R.layout.recycler_view_item, viewGroup, false);
+            return new BaseHolder(view);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-            MyUpperViewHolder myViewHolder = (MyUpperViewHolder) holder;
+//            MyUpperViewHolder myViewHolder = (MyUpperViewHolder) holder;
+//
+//            myViewHolder.tvText.setText(list.get(position));
 
-            myViewHolder.tvText.setText(list.get(position));
-            myViewHolder.rlGroup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, ItemDetailActivity.class);
-                    intent.putExtra(ItemDetailActivity.EXTRA_NAME, list.get(position));
+            BaseHolder baseHolder = (BaseHolder) holder;
 
-                    context.startActivity(intent);
-                }
-            });
+            ((TextView)baseHolder.getView(R.id.tvText)).setText(list.get(position));
         }
 
         @Override
@@ -152,6 +153,78 @@ public class ItemFragment extends Fragment {
                 super(itemView);
                 tvText = (TextView) itemView.findViewById(R.id.tvText);
                 rlGroup = (RelativeLayout) itemView.findViewById(R.id.rlGroup);
+
+                rlGroup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        int position = getAdapterPosition();
+                        Intent intent = new Intent(context, ItemDetailActivity.class);
+                        intent.putExtra(ItemDetailActivity.EXTRA_NAME, list.get(position));
+
+                        context.startActivity(intent);
+                    }
+                });
+            }
+        }
+
+        public class BaseHolder extends RecyclerView.ViewHolder {
+
+            SparseArray<View> viewSparseArray;
+            View itemView;
+
+            public BaseHolder(View itemView) {
+                super(itemView);
+                this.itemView = itemView;
+                viewSparseArray = new SparseArray<>();
+                setBaseHolderClickEvent(itemView);
+            }
+
+            public <T extends View>T getView(@IdRes int viewId){
+                View view = viewSparseArray.get(viewId);
+                if (view == null) {
+                    view = itemView.findViewById(viewId);
+                    viewSparseArray.put(viewId, view);
+
+                    setSubLayoutClickEvent(itemView,view);
+                }
+                return (T) view;
+            }
+
+            public void setBaseHolderClickEvent(final View parent){
+
+                parent.setTag(false);
+
+                parent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        int position = getAdapterPosition();
+                        if (position == RecyclerView.NO_POSITION) {
+                            return;
+                        }
+
+                        if((Boolean) parent.getTag()){
+                            return;
+                        }
+
+                        Intent intent = new Intent(context, ItemDetailActivity.class);
+                        intent.putExtra(ItemDetailActivity.EXTRA_NAME, list.get(position));
+                        context.startActivity(intent);
+                    }
+                });
+            }
+
+            public void setSubLayoutClickEvent(final View parent, View child){
+                child.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        parent.setTag(true);
+
+                        Toast.makeText(context,"123",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }
     }
@@ -193,7 +266,7 @@ public class ItemFragment extends Fragment {
             for (int i = 0; i < 40; i++) {
                 list.add(s + " | " + mActivity.mTabs.getTabAt(position).getText().toString() + " | " + "position " + String.valueOf(i));
             }
-            rvList.setAdapter(new MyAdapter(list));
+            rvList.setAdapter(new MyAdapter(container.getContext(),list));
 
             return view;
         }
